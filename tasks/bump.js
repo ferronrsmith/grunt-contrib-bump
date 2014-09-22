@@ -86,7 +86,7 @@ module.exports = function (grunt) {
                     o.version = String(s);
                 }
                 // If git
-                if (!/-/.test(orig) && mode === 'git') {
+                if (mode === 'git') {
                     var hash = shell.exec('git rev-parse --short HEAD', {silent: true}).output.replace('\n', '');
                     o.version += '+sha.'+hash;
                 }
