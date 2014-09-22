@@ -6,39 +6,36 @@
  * Licensed under the MIT license.
  */
 
-module.exports = function(grunt) {
-  'use strict';
+module.exports = function (grunt) {
+    'use strict';
 
-  // Project configuration.
-  grunt.initConfig({
-    jshint: {
-      all: [
-        'Gruntfile.js',
-        'tasks/*.js',
-        'test/*.js',
-      ],
-      options: {
-        jshintrc: '.jshintrc'
-      },
-    },
-    bump: {
-      options: {
-        commit: false,
-        tag: false,
-        filepaths: ['tmp/package.json'],
-      },
-    },
-    nodeunit: ['test/*_test.js'],
-  });
+    require('load-grunt-tasks')(grunt);
 
-  // Actually load this plugin's task(s).
-  grunt.loadTasks('tasks');
+    // Project configuration.
+    grunt.initConfig({
+        jshint: {
+            all: [
+                'Gruntfile.js',
+                'tasks/*.js',
+                'test/*.js',
+            ],
+            options: {
+                jshintrc: '.jshintrc'
+            }
+        },
+        bump: {
+            options: {
+                commit: false,
+                tag: false,
+                filepaths: ['tmp/package.json']
+            }
+        },
+        nodeunit: ['test/*_test.js']
+    });
 
-  // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-nodeunit');
-  grunt.loadNpmTasks('grunt-contrib-internal');
+    // Actually load this plugin's task(s).
+    grunt.loadTasks('tasks');
 
-  // By default, lint and run all tests.
-  grunt.registerTask('default', ['jshint', 'nodeunit', /*'build-contrib'*/]);
+    // By default, lint and run all tests.
+    grunt.registerTask('default', ['jshint', 'nodeunit', /*'build-contrib'*/]);
 };
